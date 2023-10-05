@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity(name = "transactions")
 @Table(name = "tbtransactions")
@@ -31,5 +32,5 @@ public class Transactions {
     @JoinColumn(name = "receiver_id")
     private User receiver;
 
-    private LocalDate timestamp;
+    private LocalDateTime timestamp;
 }
