@@ -5,11 +5,11 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name =  "Users")
 @Table(name = "tbusuario")
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
