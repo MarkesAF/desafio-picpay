@@ -2,11 +2,14 @@ package com.augusto.services;
 
 import com.augusto.domain.user.User;
 import com.augusto.domain.user.UserType;
+import com.augusto.dtos.UserDTO;
 import com.augusto.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -24,9 +27,18 @@ public class UserService {
     }
 
     public User findById(Long id)throws Exception{
-        return this.repository.findByUserId(id).orElseThrow(()-> new Exception("Usuario não encontrado"));
+        Optional<User> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new Exception("Usuario nao encontrado"));
     }
     public void saveUser(User user){
         this.repository.save(user);
+    }
+    public User createUser(UserDTO user){
+        User data = new User(user);
+        this.saveUser(data);
+        return data;
+    }
+    public List<User>findAll(){
+       return this.repository.findAll();
     }
 }
